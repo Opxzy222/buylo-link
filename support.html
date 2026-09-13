@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buylo Support</title>
+  <meta name="description" content="Buylo Support — Help with accounts, orders, business Spaces, payments, and more." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
+      margin-bottom: 32px;
+    }
+
+    header .container {
+      padding-bottom: 0;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 0.95rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Category cards */
+    .categories {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 560px) {
+      .categories {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card:hover {
+      border-color: #bfdbfe;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+      text-decoration: none;
+    }
+
+    .card .icon {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card .link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Section headings */
+    section {
+      margin-bottom: 40px;
+    }
+
+    section > h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+      scroll-margin-top: 24px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text);
+    }
+
+    p, li {
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 10px 0 16px 1.25rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .topic-list {
+      list-style: none;
+      margin-left: 0;
+      margin-bottom: 24px;
+    }
+
+    .topic-list li {
+      margin-bottom: 10px;
+      padding-left: 0;
+    }
+
+    .topic-list a {
+      font-weight: 500;
+    }
+
+    .topic-list span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Contact box */
+    .contact-box {
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .contact-box h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .contact-box p {
+      margin-bottom: 8px;
+    }
+
+    .email {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .subjects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .subjects span {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Safety */
+    .safety {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+
+    .safety h2 {
+      border-bottom-color: #fde68a;
+    }
+
+    .note {
+      background: #f1f5f9;
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Buylo Support</h1>
+      <p>How can we help?</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Welcome -->
+    <div class="hero">
+      <h2>Welcome to Buylo Support</h2>
+      <p>Whether you're looking for help with your account, having trouble with an order, managing your business Space, or need to report a problem, we're here to help.</p>
+      <p>Choose a topic below or contact our support team directly.</p>
+    </div>
+
+    <!-- Quick category cards -->
+    <div class="categories">
+      <a class="card" href="#account">
+        <div class="icon">👤</div>
+        <h3>Account</h3>
+        <p>Having trouble signing in, verifying your account, or accessing your profile?</p>
+        <span class="link">Get Account Help →</span>
+      </a>
+      <a class="card" href="#business">
+        <div class="icon">🏪</div>
+        <h3>Business Space</h3>
+        <p>Need help creating, managing, or updating your business Space?</p>
+        <span class="link">Business Help →</span>
+      </a>
+      <a class="card" href="#orders">
+        <div class="icon">📦</div>
+        <h3>Orders</h3>
+        <p>Having trouble with an order, pickup, cancellation, or order status?</p>
+        <span class="link">Order Help →</span>
+      </a>
+      <a class="card" href="#payments">
+        <div class="icon">🧾</div>
+        <h3>Payments & Receipts</h3>
+        <p>Questions about transactions, receipts, or purchase history?</p>
+        <span class="link">Payment & Receipt Help →</span>
+      </a>
+      <a class="card" href="#report">
+        <div class="icon">🚩</div>
+        <h3>Report a Business</h3>
+        <p>See something suspicious, misleading, or inappropriate?</p>
+        <span class="link">Report a Business →</span>
+      </a>
+      <a class="card" href="#contact">
+        <div class="icon">💬</div>
+        <h3>Contact Us</h3>
+        <p>Can't find the answer? Our support team is here to help.</p>
+        <span class="link">Contact Support →</span>
+      </a>
+    </div>
+
+    <!-- Topic list -->
+    <section>
+      <h2>What do you need help with?</h2>
+      <ul class="topic-list">
+        <li><a href="#faq">Frequently Asked Questions</a> — <span>Find quick answers to common questions.</span></li>
+        <li><a href="#account">Account Problems</a> — <span>Get help with signing in, verification, profiles, and account access.</span></li>
+        <li><a href="#business">Business Account Help</a> — <span>Learn how to create and manage your business Space.</span></li>
+        <li><a href="#orders">Order Problems</a> — <span>Get help with orders, pickup, cancellations, and order issues.</span></li>
+        <li><a href="#payments">Payment & Receipts</a> — <span>Questions about payments, purchase records, and digital receipts.</span></li>
+        <li><a href="#report">Report a Business</a> — <span>Report suspicious, misleading, inappropriate, or problematic business activity.</span></li>
+        <li><a href="#contact">Contact Support</a> — <span>Can't find what you're looking for? Contact our support team.</span></li>
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is Buylo?</h3>
+      <p>Buylo is a local commerce platform that helps you discover businesses, products, and services around you.</p>
+      <p>You can search for what you need, discover nearby businesses, view their information and location, connect with sellers, and place orders for pickup.</p>
+      <p>Businesses can also create a Space on Buylo to showcase their products or services and become discoverable to customers.</p>
+
+      <h3>What is a Space?</h3>
+      <p>A Space is a business's presence on Buylo.</p>
+      <p>A business can use its Space to:</p>
+      <ul>
+        <li>Display business information</li>
+        <li>Showcase products or services</li>
+        <li>Share posts and stories</li>
+        <li>Receive messages from customers</li>
+        <li>Become discoverable to nearby customers</li>
+        <li>Receive and manage orders</li>
+        <li>Build a relationship with customers</li>
+      </ul>
+      <p>Think of a Space as your business's home on Buylo.</p>
+
+      <h3>What is a Space ID?</h3>
+      <p>A Space ID is the unique identifier assigned to a business Space on Buylo.</p>
+      <p>Customers can use a Space ID to find a specific business directly.</p>
+      <p>For example:</p>
+      <p><strong>Space ID: Y035976</strong></p>
+      <p>If a business gives you its Space ID, you can use it to locate that business on Buylo.</p>
+
+      <h3>How do I find a product or service?</h3>
+      <p>Open Buylo and search for what you're looking for.</p>
+      <p>You can discover businesses based on your location or search within a specific city or area.</p>
+      <p>For example, you could search for:</p>
+      <ul>
+        <li>Perfume</li>
+        <li>Phones</li>
+        <li>Fashion</li>
+        <li>Furniture</li>
+        <li>Hair services</li>
+        <li>Restaurants</li>
+        <li>Electronics</li>
+        <li>Medical services</li>
+        <li>Beauty products</li>
+        <li>Repairs</li>
+      </ul>
+      <p>Buylo helps you discover businesses that offer what you're looking for.</p>
+
+      <h3>How does buying on Buylo work?</h3>
+      <p>The process is simple:</p>
+      <p><strong>Search → Discover → Connect → Order → Pick Up</strong></p>
+      <ol>
+        <li>Search for the product or service you need.</li>
+        <li>Discover businesses that offer it.</li>
+        <li>View the business and available information.</li>
+        <li>Communicate with the business if you have questions.</li>
+        <li>Place an order when you're ready.</li>
+        <li>Pick up your order from the business.</li>
+      </ol>
+      <p>Always review the order details before confirming.</p>
+
+      <h3>How do I contact a business?</h3>
+      <p>Open the business's Space and use the available communication options to contact the business.</p>
+      <p>You can ask questions about products, availability, pricing, pickup, and other details before placing an order.</p>
+
+      <h3>How do I follow a business?</h3>
+      <p>Open the business's Space and tap Follow.</p>
+      <p>Following a business allows you to stay updated with content the business shares on Buylo, including posts and stories.</p>
+    </section>
+
+    <!-- Account Problems -->
+    <section id="account">
+      <h2>Account Problems</h2>
+
+      <h3>I can't sign in to my account</h3>
+      <p>If you're having trouble signing in:</p>
+      <ol>
+        <li>Make sure you're using the correct phone number or account details.</li>
+        <li>Check that your internet connection is working.</li>
+        <li>Make sure you're using the latest version of Buylo.</li>
+        <li>Close and reopen the app.</li>
+        <li>Try signing in again.</li>
+      </ol>
+      <p>If you still can't access your account, contact Buylo Support.</p>
+
+      <h3>I can't verify my account</h3>
+      <p>Some Buylo activities may require account verification.</p>
+      <p>If verification isn't working:</p>
+      <ul>
+        <li>Make sure your information is entered correctly.</li>
+        <li>Make sure your identification details match the information you're providing.</li>
+        <li>Check your internet connection.</li>
+        <li>Try again later if the verification service is temporarily unavailable.</li>
+      </ul>
+      <p>If the problem continues, contact support and describe the issue you're experiencing.</p>
+      <div class="note">Never send your password, OTP, PIN, or other confidential security information to anyone claiming to be Buylo Support.</div>
+
+      <h3>I changed my phone number</h3>
+      <p>If you've changed the phone number associated with your account, contact Buylo Support if you're unable to access or update your account.</p>
+      <p>For your security, we may need to verify that you're the account owner before making certain account-related changes.</p>
+
+      <h3>My account has been restricted</h3>
+      <p>If you believe your account has been incorrectly restricted or you're unable to use certain Buylo features, contact support.</p>
+      <p>Tell us:</p>
+      <ul>
+        <li>The account you're having trouble with</li>
+        <li>What you're trying to do</li>
+        <li>What happens when you try</li>
+        <li>Any error message you receive</li>
+      </ul>
+      <p>Our team will review the issue.</p>
+    </section>
+
+    <!-- Business Account Help -->
+    <section id="business">
+      <h2>Business Account Help</h2>
+
+      <h3>How do I create a business Space?</h3>
+      <p>You can create a business Space directly through Buylo.</p>
+      <p>Provide your business information and complete the setup process.</p>
+      <p>Once your Space is created, you can add information about your business and begin building your presence on Buylo.</p>
+
+      <h3>What can I add to my Space?</h3>
+      <p>Depending on the features available to your account, you can add:</p>
+      <ul>
+        <li>Business name</li>
+        <li>Business description</li>
+        <li>Location</li>
+        <li>Opening hours</li>
+        <li>Products</li>
+        <li>Services</li>
+        <li>Prices</li>
+        <li>Photos</li>
+        <li>Posts</li>
+        <li>Stories</li>
+        <li>Business information</li>
+        <li>Contact options</li>
+      </ul>
+      <p>Keep your business information accurate and up to date.</p>
+
+      <h3>How do I update my business information?</h3>
+      <p>Open My Space and access your business management options.</p>
+      <p>From there, you can update the information available for your business Space.</p>
+      <p>If you're unable to make a change, contact Buylo Support.</p>
+
+      <h3>How do I find my Space ID?</h3>
+      <p>Your Space ID is displayed within your business Space.</p>
+      <p>You can share your Space ID with customers so they can find your business directly on Buylo.</p>
+
+      <h3>How do customers find my business?</h3>
+      <p>Customers can discover businesses through Buylo's search and discovery features.</p>
+      <p>A customer may search for:</p>
+      <ul>
+        <li>Your products</li>
+        <li>Your services</li>
+        <li>Your business</li>
+        <li>A category</li>
+        <li>Businesses within a specific area</li>
+      </ul>
+      <p>Make sure your Space contains accurate business information and relevant products or services to make it easier for customers to understand what you offer.</p>
+
+      <h3>I can't create my business Space</h3>
+      <p>If you're having trouble creating a Space:</p>
+      <ol>
+        <li>Check your internet connection.</li>
+        <li>Make sure all required information has been completed.</li>
+        <li>Make sure your business information follows Buylo's guidelines.</li>
+        <li>Update Buylo to the latest version.</li>
+        <li>Try again.</li>
+      </ol>
+      <p>If the problem continues, contact support.</p>
+
+      <h3>How do I report a fake or misleading business?</h3>
+      <p>If you believe a business is providing misleading information, pretending to be another business, engaging in suspicious activity, or violating Buylo's rules, you can report the business.</p>
+      <p>Use the Report option available on the relevant business Space or contact Buylo Support.</p>
+      <p>Provide as much useful information as possible so our team can investigate.</p>
+    </section>
+
+    <!-- Order Problems -->
+    <section id="orders">
+      <h2>Order Problems</h2>
+
+      <h3>Where can I find my orders?</h3>
+      <p>Your orders and related purchase information can be accessed through the relevant order or receipt sections of your Buylo account.</p>
+
+      <h3>My order hasn't been accepted</h3>
+      <p>Businesses may need time to review and respond to an order.</p>
+      <p>If your order remains pending longer than expected, you can contact the business directly.</p>
+      <p>If you believe there is a technical problem with the order, contact Buylo Support.</p>
+
+      <h3>My order was rejected</h3>
+      <p>An order may be rejected by a business for several reasons, such as availability or other business-related circumstances.</p>
+      <p>If you need clarification, contact the business directly.</p>
+      <p>If you believe the order was rejected because of a technical problem with Buylo, contact support.</p>
+
+      <h3>I need to cancel my order</h3>
+      <p>If you need to cancel an order, check whether cancellation is available for that order.</p>
+      <p>If cancellation isn't available, contact the business as soon as possible.</p>
+      <p>Buylo may not be able to cancel an order on your behalf once the business has accepted or started processing it.</p>
+
+      <h3>The product I ordered is unavailable</h3>
+      <p>If a business tells you that an ordered product is unavailable, contact the business to discuss the available options.</p>
+      <p>Depending on the situation, the business may offer an alternative or another resolution.</p>
+
+      <h3>I didn't receive my order</h3>
+      <p>If you were expecting an order and it wasn't available for pickup:</p>
+      <ol>
+        <li>Contact the business first.</li>
+        <li>Confirm the order details and pickup information.</li>
+        <li>If the issue cannot be resolved, contact Buylo Support.</li>
+      </ol>
+      <p>Include your order or receipt information when contacting support.</p>
+
+      <h3>My pickup code isn't working</h3>
+      <p>If your pickup code isn't being accepted:</p>
+      <ul>
+        <li>Confirm that you're using the correct code.</li>
+        <li>Check that you're at the correct business.</li>
+        <li>Confirm that the order is ready for pickup.</li>
+        <li>Ask the business to verify the order.</li>
+      </ul>
+      <p>If the issue continues, contact Buylo Support.</p>
+      <div class="note">Do not share your pickup code with anyone other than the business handling your order.</div>
+    </section>
+
+    <!-- Payment & Receipts -->
+    <section id="payments">
+      <h2>Payment & Receipts</h2>
+
+      <h3>Does Buylo provide digital receipts?</h3>
+      <p>Yes. Purchases made through Buylo can generate digital purchase receipts that help you keep a record of your transactions.</p>
+      <p>Your receipts can help you review:</p>
+      <ul>
+        <li>Business name</li>
+        <li>Purchase amount</li>
+        <li>Order information</li>
+        <li>Purchase date</li>
+        <li>Order status</li>
+        <li>Other available transaction details</li>
+      </ul>
+
+      <h3>Where can I find my receipts?</h3>
+      <p>Go to the Customer Receipts section of your Buylo account.</p>
+      <p>Your receipts can be organized by transaction status and date, making it easier to find previous purchases.</p>
+
+      <h3>Can I track my spending?</h3>
+      <p>Buylo's receipt system can help you keep track of purchases recorded through the platform.</p>
+      <p>Your receipts can provide a convenient overview of your purchase history and spending.</p>
+
+      <h3>My receipt is incorrect</h3>
+      <p>If information on your receipt appears incorrect, first contact the business associated with the transaction.</p>
+      <p>If the information is related to a Buylo technical issue, contact our support team with the relevant receipt or order information.</p>
+
+      <h3>I can't find my receipt</h3>
+      <p>If you can't find a receipt:</p>
+      <ol>
+        <li>Check your Customer Receipts section.</li>
+        <li>Check the date range you're viewing.</li>
+        <li>Make sure you're signed into the correct account.</li>
+        <li>Check whether the purchase was completed successfully.</li>
+      </ol>
+      <p>If the receipt is still missing, contact Buylo Support.</p>
+
+      <h3>I was charged incorrectly</h3>
+      <p>If you believe you were charged an incorrect amount, contact the business first to confirm the transaction details.</p>
+      <p>If you believe the issue is related to Buylo's platform or payment processing, contact support and provide the relevant transaction information.</p>
+      <div class="note">Never send your card number, PIN, password, or OTP through support messages.</div>
+    </section>
+
+    <!-- Report a Business -->
+    <section id="report">
+      <h2>Report a Business</h2>
+
+      <h3>When should I report a business?</h3>
+      <p>You should consider reporting a business if you believe it:</p>
+      <ul>
+        <li>Is impersonating another business</li>
+        <li>Provides misleading business information</li>
+        <li>Uses inappropriate or prohibited content</li>
+        <li>Engages in suspicious activity</li>
+        <li>Attempts to scam customers</li>
+        <li>Posts fraudulent or misleading information</li>
+        <li>Violates Buylo's rules</li>
+        <li>Creates an unsafe experience for customers or other businesses</li>
+      </ul>
+
+      <h3>How do I report a business?</h3>
+      <p>Open the business's Space and use the available reporting option.</p>
+      <p>Provide a clear explanation of the problem and any relevant information that can help us understand what happened.</p>
+
+      <h3>What happens after I report a business?</h3>
+      <p>Reports are reviewed by Buylo where appropriate.</p>
+      <p>Depending on the result of the review, Buylo may take action in accordance with its policies and applicable rules.</p>
+      <p>Submitting a report does not automatically mean that a business will be removed.</p>
+
+      <h3>Can I report a business anonymously?</h3>
+      <p>Where available, Buylo may allow reports to be submitted without publicly identifying the person who made the report.</p>
+      <p>However, information submitted to Buylo may be reviewed internally to investigate the report.</p>
+    </section>
+
+    <!-- Contact Support -->
+    <section id="contact">
+      <h2>Contact Buylo Support</h2>
+
+      <h3>Can't find the answer?</h3>
+      <p>If you couldn't find what you're looking for in our Help Center, contact the Buylo Support team.</p>
+      <p>When contacting us, please provide enough information for us to understand the problem.</p>
+      <p>Include:</p>
+      <ul>
+        <li>Your name</li>
+        <li>Email address</li>
+        <li>Phone number associated with your Buylo account, if relevant</li>
+        <li>What happened</li>
+        <li>When the problem occurred</li>
+        <li>Business name or Space ID, if relevant</li>
+        <li>Order or receipt information, if relevant</li>
+        <li>Screenshot of the error, if applicable</li>
+      </ul>
+      <p>The more information you provide, the easier it is for us to investigate your issue.</p>
+
+      <div class="contact-box">
+        <h3>Email Support</h3>
+        <p>Need help?</p>
+        <p>Email our support team:</p>
+        <p class="email">support@YOURDOMAIN.com</p>
+        <p style="margin-top: 16px;"><strong>Support hours:</strong><br />Monday – Friday<br />9:00 AM – 5:00 PM WAT</p>
+        <p>We aim to respond to support requests as soon as possible.</p>
+        <p>For account, order, payment, or business-related issues, please use the subject line that best describes your problem.</p>
+        <p style="margin-top: 12px;"><strong>Suggested email subjects</strong></p>
+        <div class="subjects">
+          <span>Account Problem</span>
+          <span>Business Space Problem</span>
+          <span>Order Problem</span>
+          <span>Payment Problem</span>
+          <span>Receipt Problem</span>
+          <span>Report a Business</span>
+          <span>Technical Issue</span>
+          <span>Other</span>
+        </div>
+        <div class="note" style="margin-top: 16px;">Security reminder: Buylo Support will never ask you to send your password, OTP, PIN, or full payment-card details by email.</div>
+      </div>
+
+      <h3 style="margin-top: 32px;">Before You Contact Support</h3>
+      <p>You may be able to solve the problem faster by checking:</p>
+      <ol>
+        <li><strong>Update Buylo</strong> — Make sure you're using the latest version of the app.</li>
+        <li><strong>Check your internet connection</strong> — Some Buylo features require an active internet connection.</li>
+        <li><strong>Restart the app</strong> — Close Buylo completely and open it again.</li>
+        <li><strong>Check your account</strong> — Make sure you're signed into the correct Buylo account.</li>
+        <li><strong>Check the business directly</strong> — For product availability, pickup arrangements, pricing, and other business-specific questions, contacting the business directly may be the fastest option.</li>
+      </ol>
+    </section>
+
+    <!-- Safety -->
+    <section>
+      <div class="safety">
+        <h2>Buylo Safety</h2>
+        <p>Your safety matters to us.</p>
+        <p>When using Buylo:</p>
+        <ul>
+          <li>Review business information before making a purchase.</li>
+          <li>Confirm product and order details before accepting an order.</li>
+          <li>Keep your account credentials private.</li>
+          <li>Never share your OTP, PIN, password, or pickup code unnecessarily.</li>
+          <li>Be careful with requests for payments outside the agreed purchasing process.</li>
+          <li>Report suspicious businesses or activity to Buylo.</li>
+          <li>Contact support if something doesn't feel right.</li>
+        </ul>
+        <p>Buylo provides a platform for customers and businesses to connect. Always use your best judgment when interacting with another party.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© Buylo Support</p>
+  </footer>
+</body>
+</html>
