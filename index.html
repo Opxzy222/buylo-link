@@ -3,74 +3,1020 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Buylo – Discover Local Spaces</title>
+  <title>Buylo – Discover Local Businesses Around You</title>
+  <meta name="description" content="Buylo helps you discover local businesses, explore what they offer, and connect with sellers around your area. Download the app and start exploring." />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Buylo – Discover Local Businesses Around You" />
+  <meta property="og:description" content="Find what you need. Discover businesses around you." />
+  <meta property="og:type" content="website" />
+  
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-main: #0B1220;
+      --bg-secondary: #111C2E;
+      --primary: #3A7BD5;
+      --primary-hover: #2d6bc0;
+      --supporting: #60A5FA;
+      --text-main: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --border: rgba(148, 163, 184, 0.12);
+      --card: #0F172A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #f1f5f9;
-      min-height: 100vh;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 18, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.3px;
+    }
+
+    .logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .menu-toggle svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 80px 24px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 24px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 24px rgba(58, 123, 213, 0.25);
+    }
+
+    .btn-download:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(58, 123, 213, 0.35);
+    }
+
+    .btn-download.secondary {
+      background: transparent;
+      border: 1.5px solid rgba(148, 163, 184, 0.3);
+      box-shadow: none;
+    }
+
+    .btn-download.secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .btn-download svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+
+    .btn-text small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .btn-text span {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* Phone mockups */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 480px;
+    }
+
+    .phone {
+      width: 260px;
+      height: 520px;
+      background: #0F172A;
+      border-radius: 36px;
+      border: 3px solid #1E293B;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 22px;
+      background: #0B1220;
+      border-radius: 20px;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #111C2E 0%, #0B1220 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 40px 20px;
       text-align: center;
     }
-    .logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 22px;
-      margin-bottom: 24px;
-      object-fit: contain;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+    .phone-screen .placeholder-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(58, 123, 213, 0.15);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--supporting);
     }
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-    p {
-      font-size: 1.15rem;
-      opacity: 0.85;
-      max-width: 420px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 16px 36px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-    }
-    .btn:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-    }
-    .footer {
-      margin-top: 60px;
+
+    .phone-screen p {
       font-size: 0.85rem;
-      opacity: 0.5;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .phone.main {
+      z-index: 2;
+    }
+
+    .phone.secondary {
+      position: absolute;
+      right: 0;
+      top: 40px;
+      width: 220px;
+      height: 440px;
+      transform: rotate(8deg);
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 24px 80px;
+        gap: 50px;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        min-height: 400px;
+      }
+
+      .phone.main {
+        width: 230px;
+        height: 460px;
+      }
+
+      .phone.secondary {
+        width: 190px;
+        height: 380px;
+        right: 10%;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .btn-download {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+
+      .phone.secondary {
+        display: none;
+      }
+    }
+
+    /* Mobile menu (simple version for now) */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 8px 0;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--text-main);
+    }
+
+    .mobile-menu .nav-cta {
+      display: inline-flex;
+      margin-top: 8px;
+      justify-content: center;
     }
   </style>
 </head>
 <body>
-  <!-- Replace logo.png with your actual logo file. -->
-  <img src="/logo.png" alt="Buylo Logo" class="logo" onerror="this.style.display='none'" />
-  
-  <h1>Buylo</h1>
-  <p>Discover and join local spaces around you. Connect with people, shops, and communities nearby.</p>
-  
-  <a href="#" class="btn">Download the App</a>
 
-  <div class="footer">© 2026 Buylo</div>
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="logo.png" alt="Buylo" onerror="this.style.display='none'" />
+        Buylo
+      </a>
+
+      <div class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#for-buyers">For Buyers</a>
+        <a href="#for-businesses">For Businesses</a>
+        <a href="#about">About</a>
+        <a href="#download" class="nav-cta">Download App</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#how-it-works" onclick="this.parentElement.classList.remove('open')">How It Works</a>
+      <a href="#for-buyers" onclick="this.parentElement.classList.remove('open')">For Buyers</a>
+      <a href="#for-businesses" onclick="this.parentElement.classList.remove('open')">For Businesses</a>
+      <a href="#about" onclick="this.parentElement.classList.remove('open')">About</a>
+      <a href="#download" class="nav-cta" onclick="this.parentElement.classList.remove('open')">Download App</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Find what you need.<br>Discover businesses around you.</h1>
+      <p>Buylo helps you discover local businesses, explore what they offer, and connect with sellers around your area. Whether you're looking for a product or a service, your next discovery could be closer than you think.</p>
+
+      <div class="hero-buttons">
+        <!-- Replace href with real App Store URL when ready -->
+        <a href="#app-store" class="btn-download" id="download">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 16.97 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+          </svg>
+          <div class="btn-text">
+            <small>Download on the</small>
+            <span>App Store</span>
+          </div>
+        </a>
+
+        <!-- Replace href with real Google Play URL when ready -->
+        <a href="#google-play" class="btn-download secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3.18 23.76c-.27-.14-.43-.4-.43-.7V1.0c0-.3.16-.56.43-.7l11.55 11.73L3.18 23.76zM14.73 12.97l2.66-2.7 3.5 1.99c.5.28.5 1.02 0 1.3l-3.5 1.99-2.66-2.58zM13.45 12L4.5 2.95l9.22 5.25L13.45 12zm0 0l.27 3.8-9.22 5.25L13.45 12z"/>
+          </svg>
+          <div class="btn-text">
+            <small>Get it on</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Main phone placeholder -->
+      <div class="phone main">
+        <div class="phone-screen" style="padding: 0; background: #000;">
+          <img 
+            src="explore.jpg" 
+            alt="Buylo Explore Screen"
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 33px;"
+          />
+      </div>
+      </div>
+
+      <!-- Secondary phone placeholder -->
+      <div class="phone secondary">
+        <div class="phone-screen">
+          <div class="placeholder-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <p>Business Space<br><small style="opacity:0.6">Screenshot placeholder</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next sections will go here -->
+     <!-- ========== PROBLEM SECTION ========== -->
+  <section style="padding: 100px 24px; background: var(--bg-secondary);">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; line-height: 1.2;">
+        Abeg, who dey sell this thing?
+      </h2>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 16px; line-height: 1.7;">
+        Tired of asking around or moving from one shop to another just to find what you need?
+      </p>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 28px; line-height: 1.7;">
+        With Buylo, search for products and services, discover businesses nearby, and explore their Spaces before deciding where to buy.
+      </p>
+      <p style="font-size: 1.25rem; font-weight: 600; color: var(--supporting);">
+        Less searching around. More discovering.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section id="how-it-works" style="padding: 100px 24px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px;">
+          Finding a business is simple.
+        </h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto;">
+          Five clear steps from search to pickup.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px;">
+        
+        <!-- Step 1 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center;">
+          <div style="width: 48px; height: 48px; background: rgba(58, 123, 213, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--supporting); font-weight: 700; font-size: 1.2rem;">
+            1
+          </div>
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Search</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+            Search for the product or service you need.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center;">
+          <div style="width: 48px; height: 48px; background: rgba(58, 123, 213, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--supporting); font-weight: 700; font-size: 1.2rem;">
+            2
+          </div>
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Discover</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+            Find businesses around your location or a selected area.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center;">
+          <div style="width: 48px; height: 48px; background: rgba(58, 123, 213, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--supporting); font-weight: 700; font-size: 1.2rem;">
+            3
+          </div>
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Explore</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+            Visit business Spaces and see what they offer.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center;">
+          <div style="width: 48px; height: 48px; background: rgba(58, 123, 213, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--supporting); font-weight: 700; font-size: 1.2rem;">
+            4
+          </div>
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Connect</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+            Message sellers, follow businesses or place an order.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center;">
+          <div style="width: 48px; height: 48px; background: rgba(58, 123, 213, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--supporting); font-weight: 700; font-size: 1.2rem;">
+            5
+          </div>
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Pick up</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+            Collect your order from the business when it’s ready.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- ========== CATEGORIES ========== -->
+  <section style="padding: 90px 24px; background: var(--bg-secondary);">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <h2 style="font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px;">
+          Discover businesses across different categories
+        </h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto;">
+          From everyday needs to specialised services — find it on Buylo.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px;">
+        
+        <!-- Electronics -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 16px; padding: 28px 18px; text-align: center; transition: border-color 0.2s ease;">
+          <div style="width: 52px; height: 52px; background: rgba(58, 123, 213, 0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--supporting);">
+            <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1rem; font-weight: 600;">Electronics</h3>
+        </div>
+
+        <!-- Fashion -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 16px; padding: 28px 18px; text-align: center;">
+          <div style="width: 52px; height: 52px; background: rgba(58, 123, 213, 0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--supporting);">
+            <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1rem; font-weight: 600;">Fashion</h3>
+        </div>
+
+        <!-- Furniture -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 16px; padding: 28px 18px; text-align: center;">
+          <div style="width: 52px; height: 52px; background: rgba(58, 123, 213, 0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--supporting);">
+            <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1rem; font-weight: 600;">Furniture</h3>
+        </div>
+
+        <!-- Health & Beauty -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 16px; padding: 28px 18px; text-align: center;">
+          <div style="width: 52px; height: 52px; background: rgba(58, 123, 213, 0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--supporting);">
+            <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1rem; font-weight: 600;">Health & Beauty</h3>
+        </div>
+
+        <!-- Medical & Healthcare -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 16px; padding: 28px 18px; text-align: center;">
+          <div style="width: 52px; height: 52px; background: rgba(58, 123, 213, 0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--supporting);">
+            <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1rem; font-weight: 600;">Medical & Healthcare</h3>
+        </div>
+
+        <!-- Services -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 16px; padding: 28px 18px; text-align: center;">
+          <div style="width: 52px; height: 52px; background: rgba(58, 123, 213, 0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--supporting);">
+            <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1rem; font-weight: 600;">Services</h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOR BUYERS ========== -->
+  <section id="for-buyers" style="padding: 100px 24px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px;">
+          Everything starts with what you’re looking for
+        </h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 540px; margin: 0 auto;">
+          Buylo makes it easier to discover businesses and explore what they offer.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+
+        <!-- Feature 1 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Search Nearby</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Find businesses around your current location.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Search by City or Area</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Explore businesses in locations you want to visit.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Find by Space ID</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Go directly to a business using its unique Space ID.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Explore Business Spaces</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            View business information, products, services, and location details.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Follow Businesses</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Follow businesses you like and stay connected with their updates.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Connect with Sellers</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Message businesses and make enquiries directly.
+          </p>
+        </div>
+
+        <!-- Feature 7 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Order for Pickup</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Place orders through Buylo and collect them when ready.
+          </p>
+        </div>
+
+        <!-- Feature 8 -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Digital Receipts</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Access receipts for purchases made through Buylo and track your spending.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- ========== FOR BUSINESSES ========== -->
+  <section id="for-businesses" style="padding: 100px 24px; background: var(--bg-secondary);">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        
+        <!-- Left content -->
+        <div>
+          <h2 style="font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; line-height: 1.2;">
+            Your business deserves to be discovered
+          </h2>
+          
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.7;">
+            Your customers shouldn’t have to walk past your shop to know what you sell.
+          </p>
+          
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7;">
+            Create your Buylo Space, showcase your products or services, share updates, and give customers another way to find and connect with your business.
+          </p>
+
+          <ul style="list-style: none; margin-bottom: 36px;">
+            <li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 1rem; color: var(--text-main);">
+              <span style="color: var(--supporting); font-weight: 700; margin-top: 2px;">✓</span>
+              Create your business Space
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 1rem; color: var(--text-main);">
+              <span style="color: var(--supporting); font-weight: 700; margin-top: 2px;">✓</span>
+              Add your products and services
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 1rem; color: var(--text-main);">
+              <span style="color: var(--supporting); font-weight: 700; margin-top: 2px;">✓</span>
+              Share Posts and Stories
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 1rem; color: var(--text-main);">
+              <span style="color: var(--supporting); font-weight: 700; margin-top: 2px;">✓</span>
+              Connect with customers through messages
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 1rem; color: var(--text-main);">
+              <span style="color: var(--supporting); font-weight: 700; margin-top: 2px;">✓</span>
+              Receive notifications about new orders and messages
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 1rem; color: var(--text-main);">
+              <span style="color: var(--supporting); font-weight: 700; margin-top: 2px;">✓</span>
+              Build a following for your business
+            </li>
+          </ul>
+
+          <!-- Download buttons for businesses too -->
+          <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+            <a href="#app-store" class="btn-download" style="padding: 13px 22px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 16.97 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+              </svg>
+              <div class="btn-text">
+                <small>Download on the</small>
+                <span>App Store</span>
+              </div>
+            </a>
+
+            <a href="#google-play" class="btn-download secondary" style="padding: 13px 22px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M3.18 23.76c-.27-.14-.43-.4-.43-.7V1.0c0-.3.16-.56.43-.7l11.55 11.73L3.18 23.76zM14.73 12.97l2.66-2.7 3.5 1.99c.5.28.5 1.02 0 1.3l-3.5 1.99-2.66-2.58zM13.45 12L4.5 2.95l9.22 5.25L13.45 12zm0 0l.27 3.8-9.22 5.25L13.45 12z"/>
+              </svg>
+              <div class="btn-text">
+                <small>Get it on</small>
+                <span>Google Play</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right side - Phone placeholder -->
+        <div style="display: flex; justify-content: center;">
+          <div class="phone" style="width: 260px; height: 520px;">
+            <div class="phone-screen">
+              <div class="placeholder-icon">
+                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+              </div>
+              <p>Business Space<br><small style="opacity:0.6">Screenshot placeholder</small></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Make the business section stack on mobile */
+    @media (max-width: 800px) {
+      #for-businesses > div > div {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+        text-align: center;
+      }
+      
+      #for-businesses ul {
+        display: inline-block;
+        text-align: left;
+      }
+      
+      #for-businesses .btn-download {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  
+
+  <!-- ========== WHY BUYLO ========== -->
+  <section id="about" style="padding: 100px 24px;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px;">
+        Local commerce, made easier
+      </h2>
+      
+      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 40px; line-height: 1.7;">
+        Buylo is built around the way people actually discover and buy things locally — not the other way around.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; text-align: left;">
+        
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">Discover nearby</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Find businesses around you without asking everyone or walking shop to shop.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">Explore before you go</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            See what a business offers, their location, and contact them before visiting.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">Connect directly</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Message sellers, follow businesses, and place orders for pickup.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">Help local businesses</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Give local businesses another way to be found by the people around them.
+          </p>
+        </div>
+
+      </div>
+
+      <p style="margin-top: 48px; font-size: 1.15rem; font-weight: 600; color: var(--supporting);">
+        Built around the way people discover and buy locally.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== FINAL CTA ========== -->
+  <section style="padding: 100px 24px; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-main) 100%);">
+    <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.6px; margin-bottom: 18px; line-height: 1.2;">
+        Your next discovery starts on Buylo
+      </h2>
+      
+      <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 36px; line-height: 1.7;">
+        Whether you’re looking for something to buy or helping customers find your business, Buylo brings local commerce closer.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;">
+        <a href="#app-store" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 16.97 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+          </svg>
+          <div class="btn-text">
+            <small>Download on the</small>
+            <span>App Store</span>
+          </div>
+        </a>
+
+        <a href="#google-play" class="btn-download secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+            <path d="M3.18 23.76c-.27-.14-.43-.4-.43-.7V1.0c0-.3.16-.56.43-.7l11.55 11.73L3.18 23.76zM14.73 12.97l2.66-2.7 3.5 1.99c.5.28.5 1.02 0 1.3l-3.5 1.99-2.66-2.58zM13.45 12L4.5 2.95l9.22 5.25L13.45 12zm0 0l.27 3.8-9.22 5.25L13.45 12z"/>
+          </svg>
+          <div class="btn-text">
+            <small>Get it on</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer style="padding: 60px 24px 40px; border-top: 1px solid var(--border);">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px;">
+        
+        <!-- Brand -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px; font-weight: 700; font-size: 1.25rem;">
+            <img src="logo.png" alt="Buylo" style="width: 32px; height: 32px; border-radius: 8px;" onerror="this.style.display='none'" />
+            Buylo
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; max-width: 260px;">
+            Your gateway to discovering local businesses and everything they offer.
+          </p>
+        </div>
+
+        <!-- Explore -->
+        <div>
+          <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-main);">Explore</h4>
+          <ul style="list-style: none; font-size: 0.9rem; color: var(--text-secondary);">
+            <li style="margin-bottom: 10px;"><a href="#how-it-works" style="transition: color 0.2s;">How It Works</a></li>
+            <li style="margin-bottom: 10px;"><a href="#for-buyers" style="transition: color 0.2s;">For Buyers</a></li>
+            <li style="margin-bottom: 10px;"><a href="#for-businesses" style="transition: color 0.2s;">For Businesses</a></li>
+            <li style="margin-bottom: 10px;"><a href="#about" style="transition: color 0.2s;">About</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-main);">Support</h4>
+          <ul style="list-style: none; font-size: 0.9rem; color: var(--text-secondary);">
+            <li style="margin-bottom: 10px;"><a href="support.html" style="transition: color 0.2s;">Help & Support</a></li>
+            <li style="margin-bottom: 10px;"><a href="privacy-policy.html" style="transition: color 0.2s;">Privacy Policy</a></li>
+            <li style="margin-bottom: 10px;"><a href="#" style="transition: color 0.2s;">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Download -->
+        <div>
+          <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; color: var(--text-main);">Download</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="#app-store" style="font-size: 0.9rem; color: var(--text-secondary);">App Store</a>
+            <a href="#google-play" style="font-size: 0.9rem; color: var(--text-secondary);">Google Play</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div style="padding-top: 30px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          © 2026 Buylo. All rights reserved.
+        </p>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          Made for local discovery
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Footer responsive */
+    @media (max-width: 800px) {
+      footer > div > div:first-child {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 30px !important;
+      }
+    }
+    
+    @media (max-width: 500px) {
+      footer > div > div:first-child {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    footer a:hover {
+      color: var(--text-main) !important;
+    }
+  </style>
+
 </body>
 </html>
