@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Delete Account & Data – Buylo</title>
+  <meta name="description" content="Learn how to delete your Buylo account and personal data." />
+  
+  <style>
+    :root {
+      --bg-main: #0B1220;
+      --bg-secondary: #111C2E;
+      --primary: #3A7BD5;
+      --primary-hover: #2d6bc0;
+      --supporting: #60A5FA;
+      --text-main: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --border: rgba(148, 163, 184, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    .nav {
+      border-bottom: 1px solid var(--border);
+      background: rgba(11, 18, 32, 0.92);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .logo img {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+    }
+
+    .back-link {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card ol {
+      padding-left: 20px;
+      color: var(--text-secondary);
+    }
+
+    .card ol li {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .card ol li strong {
+      color: var(--text-main);
+    }
+
+    .note {
+      background: rgba(58, 123, 213, 0.1);
+      border: 1px solid rgba(58, 123, 213, 0.25);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .note strong {
+      color: var(--supporting);
+    }
+
+    .contact {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact p {
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .contact a {
+      color: var(--supporting);
+      font-weight: 600;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 40px 20px 60px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="logo.png" alt="Buylo" onerror="this.style.display='none'" />
+        Buylo
+      </a>
+      <a href="/" class="back-link">← Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="container">
+    <h1>Delete Your Account & Data</h1>
+    <p class="intro">
+      You can permanently delete your Buylo account and associated data directly from the app.
+    </p>
+
+    <div class="card">
+      <h2>
+        <span style="color: var(--supporting);">1</span>
+        How to delete your account
+      </h2>
+      <ol>
+        <li>Open the <strong>Buylo</strong> app</li>
+        <li>Go to the <strong>Profile</strong> tab</li>
+        <li>Tap on <strong>Delete Account</strong></li>
+        <li>Enter your account password to confirm</li>
+      </ol>
+
+      <div class="note">
+        <strong>Important:</strong> After you confirm deletion, your account will be scheduled for permanent deletion and will be automatically deleted after <strong>7 days</strong>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <span style="color: var(--supporting);">2</span>
+        What happens after deletion
+      </h2>
+      <ol>
+        <li>Your account will be deactivated immediately</li>
+        <li>You will no longer be able to log in</li>
+        <li>After 7 days, your personal data and account will be permanently deleted</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>
+        <span style="color: var(--supporting);">3</span>
+        Need help?
+      </h2>
+      <p style="color: var(--text-secondary); line-height: 1.7;">
+        If you are unable to delete your account from the app or need assistance, you can contact us at:
+      </p>
+      <p style="margin-top: 12px;">
+        <a href="mailto:support@buylo.com.ng">support@buylo.com.ng</a>
+      </p>
+    </div>
+
+    <div class="contact">
+      <p>Having trouble?</p>
+      <p><a href="mailto:support@buylo.com.ng">Contact Support →</a></p>
+    </div>
+  </div>
+
+</body>
+</html>
