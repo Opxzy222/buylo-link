@@ -3,6 +3,7 @@
     { "source": "/link/shop/(.*)", "destination": "/redirect.html" },
     { "source": "/support", "destination": "/support.html" },
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+    { "source": "/delete-data", "destination": "/delete-data.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
